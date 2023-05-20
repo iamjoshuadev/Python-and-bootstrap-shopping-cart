@@ -1,0 +1,33 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages%}
+<p class="alert alert-success">{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="text-center">
+<h1>Productos</h1>
+<div class="row" style="display: flex; flex-wrap: wrap;">
+  {% for producto in productos %}
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">{{ producto[1] }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${{ producto[2] }}</h6>
+        <form action="/agregar" method="POST">
+          <input type="hidden" name="id" value="{{ producto[0] }}">
+          <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" name="cantidad" min="1" value="1">
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<a href="/carrito" class="btn btn-Success mt-3">Ver el carrito</a>
+</div>
+

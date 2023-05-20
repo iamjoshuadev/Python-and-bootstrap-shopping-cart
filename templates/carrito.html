@@ -1,0 +1,20 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages%}
+<p class="alert alert-danger">{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="text-center">
+<h1 class="text-center">Carrito de compras</h1>
+<ul class="list-group">
+  {% for item in carrito %}
+  <li class="list-group-item">
+    {{ item['nombre'] }} - ${{ item['precio'] }} - Cantidad: {{ item['cantidad'] }}
+  </li>
+  {% endfor %}
+</ul>
+<a href="/vaciar" class="text-center btn btn-danger mt-3">Vaciar carrito</a>
+<a href="/" class="text-center btn btn-Success mt-3">Volver</a>
+</div>
